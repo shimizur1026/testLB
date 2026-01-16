@@ -198,7 +198,6 @@ section:nth-child(even) .pop-title {
     position: absolute;
     top: auto;
     bottom: 5%;
-
     left: 5%;
 
     font-family: var(--font-body);

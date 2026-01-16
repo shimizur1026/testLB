@@ -1,0 +1,24 @@
+[
+    {
+        "id": "procedure1",
+        "name": "ねずボット基本型",
+        "model": "assets/models/robot.glb",
+        "parts": [
+            {
+                "label": "ねずボット",
+                "icon": "fa-solid fa-person",
+                "basePath": "assets/build/procedure1/nezubot/"
+            },
+            {
+                "label": "ロボにゃん",
+                "icon": "fa-solid fa-person",
+                "basePath": "assets/build/procedure1/robonyan/"
+            },
+            {
+                "label": "合体",
+                "icon": "fa-solid fa-people-arrows",
+                "basePath": "assets/build/procedure1/gattai/"
+            }
+        ]
+    }
+]

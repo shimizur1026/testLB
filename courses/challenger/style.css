@@ -1,0 +1,1623 @@
+:root {
+    /* メインカラー・背景色の定義 */
+    --bg-color: #FFFFFF;
+    --main-color: #00b4dc;
+    --accent-color: #ffd300;
+    --base-ice: #f0fafd;
+    --text-main: #333333;
+    --text-sub: #5a6c75;
+    --accent-shadow: #e6be00;
+
+    /* フォント設定 */
+    --font-heading-en: 'Montserrat', sans-serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+
+    /* レイアウト定数 */
+    --container-width: 1024px;
+    --section-spacing: 120px;
+}
+
+* {
+    /* すべての要素でボックスサイズを borders 含めて計算するように設定 */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* サイト全体のフォント、背景、基本色を設定 */
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.8;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+#app {
+    width: 100%;
+}
+
+.container {
+    /* コンテンツを中央寄せにし、最大幅を制限する共通クラス */
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    width: 100%;
+}
+
+/* セクション共通設定 */
+section {
+    /* 上下の余白と基準位置の設定 */
+    padding: var(--section-spacing) 0;
+    width: 100%;
+    position: relative;
+}
+
+section:nth-child(even) {
+    /* 偶数番目のセクション背景を薄い水色にする */
+    background-color: var(--base-ice);
+}
+
+/* タイポグラフィ（見出し） */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading-en);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.pop-title {
+    /* セクションごとに表示される大きなインパクトのあるタイトル */
+    color: var(--main-color);
+    font-size: 5rem;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+section:nth-child(even) .pop-title {
+    /* 背景が水色のセクションでも同じ色を維持 */
+    color: var(--main-color);
+}
+
+.reveal {
+    visibility: hidden;
+}
+
+/* ヒーローセクション（メインビジュアル） */
+.hero-section {
+    /* 画面上部の大きな見出しエリア */
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #00b4dc !important;
+    /* v37.1 Deep Navy Header */
+    color: white;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
+
+/* テクスチャオーバーレイ（和紙風のノイズ） */
+.texture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* SVGで生成した微細なノイズ画像を背景に適用 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.hero-content {
+    /* ヒーローセクション内の中央コンテンツ */
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.hero-badge {
+    /* 黄色の目立つバッジ（コース名など） */
+    position: absolute;
+    top: 35%;
+    /* 25% → 22% (少し上へ) */
+    left: 3.8%;
+
+    background: var(--accent-color);
+    color: #000;
+    font-family: var(--font-heading-en);
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 4px 16px;
+    /* 少しスリムに */
+    border-radius: 4px;
+    /* 今風の少し角張ったデザインに */
+    margin-bottom: 0;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.08em;
+}
+
+.hero-label {
+    /* LESSON BOOK */
+    position: absolute;
+    top: 47%;
+    left: 5%;
+
+    font-family: var(--font-heading-en);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    /* 0.2emだと広すぎて散漫になるので少し詰めました */
+    color: #FFFFFF;
+    /* 透明度なしの白でパキッと */
+    margin: 0;
+    z-index: 2;
+    text-align: left;
+    line-height: 1;
+    /* 行間を詰める */
+}
+
+.hero-giant-num {
+    /* LESSON NO数字の位置調整 */
+    position: absolute;
+    top: 65%;
+    /* ど真ん中に配置 */
+    right: -2%;
+    /* 少しはみ出させる */
+    transform: translateY(-50%);
+
+    font-family: var(--font-heading-en);
+    font-size: 22rem;
+    /* 迫力を出すため大きく */
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 5px rgba(255, 255, 255, 0.4);
+    /* 線を少し細く繊細に */
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-main-title {
+    /* 日本語タイトル */
+    position: absolute;
+    top: auto;
+    bottom: 5%;
+
+    left: 5%;
+
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 2.4rem;
+    /* 3remは少し大きすぎるので調整 */
+    color: #FFFFFF;
+    line-height: 1.4;
+    text-align: left;
+    z-index: 2;
+
+    /* マーカー風ラインの修正 */
+    background: linear-gradient(transparent 65%, var(--accent-color) 65%);
+    display: inline;
+    /* 改行しても背景が続くように */
+    padding: 0 4px;
+    box-decoration-break: clone;
+    /* 改行時の端っこも綺麗に処理 */
+    -webkit-box-decoration-break: clone;
+
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hero-char {
+    /* ヒーローセクション内に配置されるキャラクター画像 */
+    position: absolute;
+    width: 100px;
+    z-index: 2;
+    opacity: 1;
+}
+
+/* ポイントリスト（学習のポイント） */
+.point-grid {
+    /* 2カラムのグリッドでポイントを表示 */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 80px;
+}
+
+.point-item {
+    /* 各ポイント項目の装飾（左側のアクセント線） */
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-left: 10px solid var(--accent-color);
+    padding-left: 30px;
+}
+
+/* 組み立てセクション */
+.build-section .container {
+    /* 中央揃えの設定 */
+    text-align: center;
+}
+
+.parts-selector {
+    /* 組み立てるロボットのパーツを切り替えるタブコンテナ */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.part-tab {
+    /* 各パーツ切り替えボタンのスタイル */
+    font-family: var(--font-heading-en);
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    color: #BDDCE4;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.part-tab i {
+    font-size: 1.8rem;
+    opacity: 0.8;
+}
+
+.part-tab.active {
+    /* 選択中のタブの色 */
+    color: var(--main-color);
+}
+
+.step-image-container {
+    /* 組み立て手順の画像を表示する枠 */
+    height: 500px;
+    background: white;
+    border: 4px solid var(--main-color);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.pop-button {
+    /* サイト全体で使用するポップなデザインのボタン */
+    font-family: var(--font-heading-en);
+    background: var(--accent-color);
+    color: var(--text-main);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* 立体感を出すための下側の影 */
+    box-shadow: 0 8px 0 var(--accent-shadow);
+}
+
+.pop-button:active {
+    /* クリックした時にボタンが沈むアニメーション */
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 var(--accent-shadow);
+}
+
+.pop-button:disabled {
+    /* 無効化状態のボタンスタイル */
+    background: #e0e0e0;
+    color: #999;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ミッションセクション（シミュレーターとルール） */
+.mission-grid {
+    /* ルール説明とシミュレーターを縦に並べる構成 */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mission-rules {
+    /* ルール説明エリアの幅を調整 */
+    width: 100%;
+    text-align: center;
+}
+
+.mission-description {
+    /* ミッションの概要説明文（センサーを使って〜など） */
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+    color: var(--text-sub);
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+/* 親コンテナ：グリッド化 */
+.mission-rules-grid {
+    display: grid;
+    /* 幅350px以上のスペースがあれば2列、なければ1列に自動調整 */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    /* カード間の隙間 */
+    width: 100%;
+    max-width: 900px;
+    /* 広がりすぎ防止 */
+    margin: 30px auto;
+}
+
+/* 各カードのスタイル調整 */
+.mission-rule-card {
+    background: #fff;
+    padding: 20px;
+    /* 余白を少しスリムに */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 180, 220, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    border-left: 6px solid var(--accent-color);
+    /* 左にアクセントライン */
+    transition: transform 0.2s;
+    height: 100%;
+    /* 高さを揃える */
+}
+
+/* ホバー時のちょっとした動き */
+.mission-rule-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 180, 220, 0.25);
+}
+
+/* アイコン装飾 */
+.rule-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+}
+
+.rule-icon.warning {
+    color: #ffbc00;
+}
+
+/* 黄色 */
+.rule-icon.goal {
+    color: #00b4dc;
+}
+
+/* 水色 */
+.rule-icon.time {
+    color: #ff6b6b;
+}
+
+/* 赤 */
+
+.mission-demo {
+    /* デモ表示エリアのコンテナ */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.robot-name-label {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-top: -30px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.simulator-container,
+.mission-static-image-wrapper {
+    /* ミッションのビジュアル表示エリア */
+    width: 100%;
+    max-width: 800px;
+    /* 横幅を制限して安定させる */
+    background: white;
+    border: 4px solid var(--main-color);
+    border-radius: 20px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* アスペクト比の調整 */
+.ratio-rectangle {
+    /* 横長（16:9に近いが、高さ固定気味だったものを改善） */
+    aspect-ratio: 2 / 1;
+    max-height: 450px;
+}
+
+.ratio-square {
+    /* 正方形 (1:1) */
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.mission-static-image {
+    /* 静止画コース用 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rules-only-flow {
+    /* ルールのみの場合のレイアウト */
+    gap: 0;
+}
+
+.rule-item {
+    /* ミッションルールの各項目 */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* .rule-icon moved to .mission-rule-card section */
+
+/* まなぶセクション（学習カード） */
+.learn-grid {
+    /* 学習項目を並べるグリッドコンテナ。auto-fitにより、2つなら50%、3つなら33%と自動調整される */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.item-card {
+    /* 各学習項目のカード。立体的なデザインとホバー演出 */
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid #eee;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-card:hover {
+    /* ホバー時に浮き上がるアニメーション */
+    border-color: var(--main-color);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 180, 220, 0.1);
+}
+
+.learn-icon-wrapper i {
+    /* 学習カード内のアイコン */
+    font-size: 4rem;
+    /* 3remから少し大きく調整 */
+    margin-bottom: 20px;
+    color: var(--main-color);
+    /* アイコンをテーマカラーに */
+    display: inline-block;
+}
+
+.item-label {
+    /* 学習項目のタイトルラベル */
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: var(--font-heading-en);
+    color: var(--text-main);
+}
+
+/* モーダル（ポップアップ） */
+.pop-modal {
+    /* 詳細説明などを表示するダイアログ */
+    width: 70%;
+    max-width: 900px;
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    margin: auto;
+}
+
+.pop-modal::backdrop {
+    /* モーダル表示時の背景（暗転・ぼかし） */
+    background: rgba(89, 79, 68, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.modal-header {
+    /* モーダルのヘッダーエリア */
+    background: var(--main-color);
+    padding: 30px 40px;
+    color: white;
+}
+
+.modal-title {
+    /* モーダル内のタイトル */
+    font-size: 2rem;
+}
+
+.modal-main {
+    /* モーダルのメインコンテンツエリア */
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.modal-img {
+    /* モーダル内の画像 */
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.modal-text {
+    /* モーダル内の説明テキスト */
+    flex: 1;
+    font-size: 1.1rem;
+    color: var(--text-sub);
+}
+
+.close-btn {
+    /* モーダルを閉じる「×」ボタン */
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: .5;
+}
+
+/* 背景の装飾要素（グローバル） */
+.bg-decor {
+    /* 現在は非表示設定 */
+    display: none;
+}
+
+/* 動画プレイヤーのラッパー */
+.video-wrapper {
+    /* 16:9のアスペクト比を維持 */
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+/* おうちミッション セクション */
+.home-content-wrapper {
+    /* 動画、画像、テキストをまとめるメインカード */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    border: 4px solid var(--accent-color);
+    /* 黄色に変更 */
+    max-width: 960px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px rgba(255, 211, 0, 0.2);
+    /* 黄色のグロー効果 */
+    position: relative;
+    transition: all 0.5s ease;
+    color: var(--text-main);
+}
+
+/* タイトル色を黄色に */
+.home-content-wrapper .pop-title {
+    color: var(--accent-color);
+}
+
+/* アンロック時の個別の色変更を削除（統一されたため） */
+
+
+
+.home-image-wrapper {
+    /* おうちミッションの画像用コンテナ */
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 4px solid #eee;
+}
+
+.home-image {
+    /* おうちミッションの画像本体 */
+    width: 100%;
+    display: block;
+}
+
+.home-text-content {
+    /* おうちミッションの説明テキスト（明るいデザイン用） */
+    width: 100%;
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    background: #fdfdfd;
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px dashed #ddd;
+    text-align: left;
+}
+
+/* マーキー（電光掲示板風の流れるテキスト）システム */
+.marquee-container {
+    /* コンテンツを横一行に並べ、はみ出しを隠す設定 */
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+}
+
+.marquee-content {
+    /* アニメーションで左へ流れるコンテンツ本体 */
+    display: inline-block;
+    padding-left: 0;
+    animation: scroll-left 40s linear infinite;
+    will-change: transform;
+}
+
+@keyframes scroll-left {
+
+    /* 左から右へ50%分（繰り返しの継ぎ目まで）移動する設定 */
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* フッター セクション (v36.5 Force Dark) */
+.footer-section {
+    padding: 60px 0 100px;
+    background: #003642 !important;
+    border-top: 2px solid #222;
+    text-align: center;
+}
+
+.footer-content p {
+    font-size: 1.2rem;
+    color: #fff !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* セクションレイアウト（水平方向の復元） */
+.hero-section {
+    /* ヒーローセクションの下部余白設定 */
+    padding-bottom: 120px;
+    position: relative;
+}
+
+/* タイプA: アラート・ストリップ（黄色い警告帯風のマーキー） */
+.marquee-alert {
+    background: var(--accent-color);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid var(--text-main);
+    border-bottom: 2px solid var(--text-main);
+    z-index: 10;
+}
+
+.marquee-alert .marquee-content {
+    /* アラートマーキー内のテキストスタイルとアニメーション速度 */
+    font-family: var(--font-heading-en);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 0.1em;
+    animation-duration: 20s;
+}
+
+.marquee-alert i {
+    /* テキスト間のアイコン余白と色 */
+    margin: 0 40px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+/* ミッションセクションの背景とパララックス装飾 */
+.mission-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+
+.mission-bg-grid {
+    /* ミッションセクションの背景に表示されるグリッド線 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 180, 220, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 180, 220, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+}
+
+.mission-watermark {
+    /* 背景に薄く表示される大きな「MISSION」の透かし文字 */
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    font-size: 25rem;
+    font-family: var(--font-heading-en);
+    font-weight: 900;
+    color: rgba(0, 180, 220, 0.03);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    /* スクロールに合わせて少し動く視差効果の設定 */
+    transform: translateY(calc(var(--scroll-offset, 0) * 0.2px));
+}
+
+.parallax-decor {
+    /* 背景に浮かぶ円形の装飾要素（パララックス用） */
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.decor-1 {
+    /* 右上に配置される大きめの装飾円 */
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    right: 15%;
+    transform: translateY(calc(var(--scroll-offset, 0) * -0.5px));
+}
+
+.decor-2 {
+    /* 左下に配置される小さめの装飾円 */
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 10%;
+    transform: translateY(calc(var(--scroll-offset, 0) * 0.3px));
+}
+
+/* 特殊演出・アニメーション効果 */
+.popup-text {
+    /* 画面上に飛び出すインパクトのあるテキスト（「ピタッ！」など） */
+    position: absolute;
+    font-size: 4.5rem;
+    font-weight: 900;
+    font-family: var(--font-heading-en);
+    font-style: italic;
+    color: var(--main-color);
+    /* 白い縁取りを追加して視認性を確保 */
+    text-shadow:
+        3px 3px 0 #fff,
+        -3px -3px 0 #fff,
+        3px -3px 0 #fff,
+        -3px 3px 0 #fff,
+        0 0 20px rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    /* 基準のセンター揃え */
+    pointer-events: none;
+    /* 下の要素の操作を邪魔しない */
+}
+
+.popup-text.show {
+    /* テキストが表示される際のアニメーション適用 */
+    opacity: 1;
+    animation: popup-sakura 0.4s cubic-bezier(0.5, 0, 0, 1) forwards;
+}
+
+@keyframes popup-sakura {
+
+    /* ポップに弾けるような出現アニメーション（translateを維持しつつscaleする） */
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.sensor-beam {
+    /* ロボットのセンサー照射を表現するエフェクト */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-color);
+    opacity: 0;
+    mix-blend-mode: multiply;
+}
+
+/* ローディング（読み込み中）画面 */
+.loading-screen {
+    /* 画面全体を覆う白い背景と中央配置の設定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    /* 回転する円形のローディングアイコン */
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--base-ice);
+    border-top-color: var(--main-color);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+
+    /* 360度回転するアニメーション */
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* サウンド切り替えボタン（Floating Action Button） */
+.sound-fab {
+    /* 右下に固定される円形ボタン */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.5, 0, 0, 1);
+    border: 3px solid var(--main-color);
+    color: var(--main-color);
+    font-size: 1.5rem;
+}
+
+.sound-fab.active {
+    /* サウンドがONの時のスタイル */
+    background: var(--main-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* 結果表示切り替えスイッチ */
+.result-toggle-area {
+    /* スイッチ全体の配置エリア */
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* --- Build Navigation Style (v36.0) --- */
+/* --- Build Navigation Style (v37.0 モダンテックバッジ) --- */
+.build-counter {
+    background: linear-gradient(135deg, #222, #333);
+    color: var(--accent-color);
+    padding: 10px 24px;
+    border-radius: 50px;
+    /* カプセル型 */
+    font-weight: 900;
+    font-size: 1.4rem;
+    font-family: var(--font-heading-en);
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(255, 211, 0, 0.2);
+    min-width: 140px;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.btn-nav {
+    border: none;
+    padding: 12px 50px;
+    font-weight: 900;
+    font-size: 1.4rem;
+    font-style: italic;
+    clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+    cursor: pointer;
+    transition: all 0.1s;
+    margin: 0 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-heading-en);
+    position: relative;
+    top: 0;
+}
+
+.btn-prev {
+    background: #d0d0d0;
+    color: #555;
+    box-shadow: 0 6px 0 #999;
+}
+
+.btn-next {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 6px 0 #b39500;
+}
+
+.btn-nav:active:not(:disabled) {
+    top: 4px;
+    box-shadow: 0 2px 0 #666;
+}
+
+.btn-next:active:not(:disabled) {
+    box-shadow: 0 2px 0 #8a7300;
+}
+
+.toggle-switch {
+    /* スイッチの外枠（カプセル状のデザイン） */
+    display: inline-flex;
+    align-items: center;
+    background: #e0e0e0;
+    padding: 10px;
+    border-radius: 60px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-knob {
+    /* スイッチ内のつまみ部分 */
+    width: 140px;
+    height: 50px;
+    background: white;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--text-sub);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.toggle-switch[data-result="success"] {
+    /* 正解・成功状態の時のスイッチ背景色 */
+    background: var(--accent-color);
+}
+
+.toggle-switch[data-result="success"] .toggle-knob {
+    /* つまみが移動した時の位置と色 */
+    transform: translateX(40px);
+    color: #000;
+}
+
+.toggle-label {
+    /* スイッチに添えるラベル */
+    padding: 0 25px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    transition: opacity 0.3s;
+}
+
+/* がんばりメーター（チャージセクション） */
+.charge-section {
+    /* チャージを行うセクション全体 */
+    padding: 100px 0;
+    text-align: center;
+    background: #f8fbff;
+}
+
+.meter-container {
+    /* 円形メーターを配置するコンテナ */
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 50px;
+}
+
+.meter-svg {
+    /* SVGメーターの回転（上から開始するように調整） */
+    transform: rotate(-90deg);
+}
+
+.meter-bg {
+    /* メーターの背景（グレーライン） */
+    fill: none;
+    stroke: #eee;
+    stroke-width: 15;
+}
+
+.meter-fill {
+    /* チャージされるメーター本体（アクセントカラー） */
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 15;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+    filter: drop-shadow(0 0 8px var(--accent-color));
+}
+
+.charge-btn {
+    /* メーター中央にある大きなチャージボタン */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    background: var(--main-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-heading-en);
+    font-size: 2rem;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 0 #0088a5;
+    transition: all 0.1s;
+    user-select: none;
+}
+
+.charge-btn:active {
+    /* ボタン押し下げ時のアニメーション */
+    transform: translate(-50%, -46%);
+    box-shadow: 0 4px 0 #0088a5;
+}
+
+.charge-btn.full-charge {
+    /* チャージが満タンになった時のスタイル */
+    background: var(--accent-color);
+    box-shadow: 0 0 30px var(--accent-color);
+}
+
+/* モチベーションテキスト（大きくバウンドして出現） */
+.motivation-text {
+    /* 画面中央に出現する大きな褒め言葉テキスト */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--main-color);
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.animate-bounce-in {
+    /* テキストが出現する際のアニメーション適用 */
+    animation: bounceIn 1.5s cubic-bezier(0.5, 0, 0, 1) forwards;
+}
+
+@keyframes bounceIn {
+
+    /* 拡大しながら出現し、少し上に移動して消えるアニメーション */
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -70%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ミッションレポートセクション（ディープネイビー・テックデザイン v37.0） */
+.section-report {
+    background: #003642;
+    /* Deep Navy */
+    color: #e0f7fa;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid var(--accent-color);
+    border-bottom: 4px solid #00252e;
+}
+
+.section-report::before {
+    /* サイバーなグリッド模様とグラデーションの背景装飾 */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(0, 180, 220, 0.1) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 2px);
+    background-size: 100% 100%, 100% 4px;
+    pointer-events: none;
+}
+
+.report-step {
+    /* 各報告項目を囲むカード形式のラッパー */
+    background: rgba(40, 40, 40, 0.8);
+    border: 2px solid #555;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.report-step:hover {
+    /* ホバー時に枠線の色を強調 */
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 180, 220, 0.2);
+}
+
+.step-label {
+    /* 各項目の質問タイトル */
+    font-family: var(--font-heading-en);
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.step-label span.small {
+    /* 補足説明用の小さなテキスト */
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* 報告の選択ボタン */
+.step-options {
+    /* 選択肢ボタンを横に並べるコンテナ */
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-option {
+    /* 各選択ボタン（「せいこう！」「がんばった」など） */
+    flex: 1;
+    min-width: 150px;
+    padding: 18px;
+    border: 2px solid #555;
+    background: #222;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-option.active {
+    /* ボタンが選択された時のスタイル */
+    border-color: var(--accent-color);
+    background: rgba(0, 180, 220, 0.3);
+    box-shadow: 0 0 20px rgba(0, 180, 220, 0.4);
+    transform: translateY(-3px);
+}
+
+/* 送信ボタン（タクタイルデザイン） */
+.btn-submit {
+    /* ミッションレポート送信ボタン：より立体的な「押し心地」を強化 */
+    background: var(--accent-color);
+    color: #000;
+    /* 黄色の上で見やすい黒に変更 */
+    border: none;
+    padding: 20px 80px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* 黄色に合わせた影で押し込み感を演出 */
+    box-shadow: 0 12px 0 #ccaa00, 0 15px 30px rgba(255, 211, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 0 #ccaa00, 0 20px 40px rgba(255, 211, 0, 0.4);
+}
+
+.btn-submit:active:not(:disabled) {
+    top: 8px;
+    /* 押し込み量を増やす */
+    box-shadow: 0 4px 0 #ccaa00, 0 8px 15px rgba(255, 211, 0, 0.2);
+}
+
+.btn-submit:disabled {
+    /* 選択が完了していない時の無効化スタイル */
+    background: #444;
+    box-shadow: 0 8px 0 #222;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-submit.sending {
+    /* 送信中の回転待機アニメーション用スタイル */
+    background: #555;
+    box-shadow: 0 4px 0 #333;
+    top: 4px;
+    cursor: wait;
+}
+
+.btn-submit.sent {
+    /* 送信完了後のダークスタイル（背景と同化しすぎないよう調整） */
+    background: #4a4a4a;
+    color: #aaa;
+    box-shadow: 0 8px 0 #222, 0 10px 20px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+/* 物理的な南京錠のアンロック（解除）演出システム */
+.home-mission-wrapper {
+    /* おうちミッション全体を囲むコンテナ */
+    position: relative;
+    transition: all 1.2s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.home-mission-content {
+    /* 解除前の中身（ぼかしがかかる部分） */
+    transition: filter 0.8s ease;
+}
+
+.home-mission-wrapper.locked .home-mission-content {
+    /* ロック状態でのぼかしと暗転設定 */
+    filter: blur(20px) contrast(1.2);
+    pointer-events: none;
+}
+
+.section-home {
+    /* おうちミッション全体のダークな背景設定 */
+    background: #003642;
+    color: #fff;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #333;
+    border-bottom: 4px solid #333;
+}
+
+.section-home::before {
+    /* 背景のサイバーグリッド装飾（セクションレポートと同期） */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(180, 0, 220, 0.1) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 2px);
+    background-size: 100% 100%, 100% 4px;
+    pointer-events: none;
+}
+
+.lock-cover {
+    /* ロック状態の際に中身を隠すカバー要素 - 境界線状に配置(v36.5) */
+    position: absolute;
+    top: 0;
+    /* 中央ではなく上部に固定 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5000;
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+.lock-icon-container {
+    /* 南京錠のアイコン一式を保持するコンテナ - 境界線状に配置(v36.4) */
+    position: relative;
+    width: 200px;
+    height: 240px;
+    margin: -120px auto 30px;
+    /* セクションの切れ目に設置 */
+    z-index: 6000;
+}
+
+.lock-body {
+    /* 南京錠の本体（下の四角い部分） */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 12rem;
+    color: #444;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    z-index: 2;
+    border-radius: 20px;
+}
+
+.lock-shackle {
+    /* 南京錠のつる（上のU字型の部分） */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 120px;
+    height: 140px;
+    border: 20px solid #555;
+    border-bottom: none;
+    border-radius: 60px 60px 0 0;
+    transform: translateX(-50%);
+    z-index: 1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* アンロック時のアニメーションシーケンス */
+.unlocking .lock-shackle {
+    /* ロック解除中に「つる」が外れる動き */
+    transform: translateX(-50%) translateY(-30px) rotate(-15deg);
+    border-color: #777;
+}
+
+.unlocking .lock-body {
+    /* ロック解除中に本体が振動するアニメーション */
+    animation: lock-vibrate 0.1s linear infinite;
+}
+
+@keyframes lock-vibrate {
+
+    /* 小刻みに左右に揺れる動き */
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+.shake-intense {
+    /* アンロックの瞬間の画面の大きな揺れ */
+    animation: shake-intense 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake-intense {
+
+    /* 激しく上下左右に揺れるアニメーション */
+    10%,
+    90% {
+        transform: translate3d(-2px, -2px, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(4px, 4px, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-8px, -8px, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(8px, 8px, 0);
+    }
+}
+
+.unlocked .lock-shackle {
+    /* 解除後に「つる」が遠くへ飛んでいく動き */
+    transform: translateX(100px) translateY(500px) rotate(90deg);
+    opacity: 0;
+}
+
+.unlocked .lock-body {
+    /* 解除後に本体が落下していく動き */
+    transform: translateY(800px) rotate(20deg);
+    opacity: 0;
+}
+
+.unlocked .lock-text {
+    /* 中央のテキストが消えていく */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.lock-text {
+    /* 「？？エリア」などの案内テキスト */
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1.6;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s ease;
+}
+
+.home-mission-wrapper.unlocked {
+    /* アンロック完了後の中身（ぼかし解除、操作可能） */
+    filter: none;
+    pointer-events: auto;
+}
+
+.home-mission-wrapper.unlocking {
+    /* アンロック演出時の画面全体の微振動 */
+    animation: screen-shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes screen-shake {
+
+    /* 画面全体が左右に微振動するアニメーション */
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* エネルギー・パーティクル演出 */
+.energy-particle {
+    /* アンロック時に飛び散る光の粒子 */
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    z-index: 9999;
+    box-shadow: 0 0 10px var(--accent-color);
+    pointer-events: none;
+}
+
+.unlock-text {
+    /* 解除時に大きく表示される「UNLOCK!」のテキスト */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    text-shadow: 0 0 30px rgba(255, 211, 0, 0.8);
+    opacity: 0;
+    z-index: 200;
+    pointer-events: none;
+}
+
+.animate-unlock-text {
+    /* UNLOCKテキストが出現する際のアニメーション適用 */
+    animation: unlock-pop 1s cubic-bezier(0.5, 0, 0, 1) forwards;
+}
+
+@keyframes unlock-pop {
+
+    /* テキストが弾けるように出現し、消えていくアニメーション */
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+
+    30% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* 3Dモデル表示エリア */
+.model-wrapper {
+    /* 3Dモデルを浮かび上がらせる白いカード型コンテナ */
+    width: 100%;
+    height: 500px;
+    margin: 0 auto 40px auto;
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    /* 内側に向かって影をつけて立体感を演出 */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+model-viewer {
+    /* Google <model-viewer> 本体の設定 */
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    --poster-color: transparent;
+}
+
+.model-caption {
+    /* モデルの下に表示される「まわしてみよう！」などのテロップ */
+    text-align: center;
+    font-family: var(--font-heading-en);
+    font-weight: 700;
+    color: var(--text-sub);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.model-poster {
+    /* モデル読み込み中に表示される待機画像エリア */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

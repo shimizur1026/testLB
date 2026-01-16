@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レッスンビューアー v4</title>
+    <link rel="stylesheet" href="../style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+<body>
+    <div class="bg-decor"></div>
+
+    <div id="app">
+        <!-- SPA content will be injected here -->
+        <div class="loading-screen">
+            <div class="spinner"></div>
+            <div style="margin-top: 20px; font-weight: 500; color: var(--main-color);">よみこみちゅう...</div>
+        </div>
+    </div>
+
+    <!-- Global Sound Toggle -->
+    <div id="sound-toggle" class="sound-fab" title="音のON/OFF">
+        <i class="fa-solid fa-volume-xmark"></i>
+    </div>
+
+    <!-- Audio Elements (Dummy paths for SE) -->
+    <audio id="se-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+    <audio id="se-charge" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"
+        loop></audio>
+    <audio id="se-success" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"
+        preload="auto"></audio>
+    <audio id="se-cheer" src="https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3" preload="auto"></audio>
+
+    <!-- Global Modal Container -->
+    <dialog id="modal-dialog" class="pop-modal">
+        <div id="modal-body"></div>
+        <button id="modal-close" class="close-btn">&times;</button>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+[
+    {
+        "id": "sensor-review",
+        "text": "距離センサーのふくしゅう"
+    },
+    {
+        "id": "loop-review",
+        "text": "ループ（くりかえし）のふくしゅう"
+    },
+    {
+        "id": "branch-intro",
+        "text": "もし〜なら（ぶんき）の つかいかた"
+    }
+]

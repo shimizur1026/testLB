@@ -1,0 +1,23 @@
+[
+    {
+        "id": "program-structure",
+        "label": "プログラムの<br>くみかた",
+        "icon": "fa-solid fa-layer-group",
+        "modalType": "text",
+        "modalContent": "プログラムは「はじめ」から「おわり」まで順番に動いていくよ。<br>上から下に、信号（しんごう）のように流れていくイメージを持とう！"
+    },
+    {
+        "id": "sensor-usage",
+        "label": "センサーの<br>つかいかた",
+        "icon": "fa-solid fa-satellite-dish",
+        "modalType": "image",
+        "modalContent": "assets/learn/sensor_tip.png"
+    },
+    {
+        "id": "motor-control",
+        "label": "モーターの<br>うごかし方",
+        "icon": "fa-solid fa-gears",
+        "modalType": "text",
+        "modalContent": "モーターは「パワー」と「じかん」を調整（ちょうせい）して動かすよ。パワーを上げすぎると、ロボットが急に動き出すから注意しよう！"
+    }
+]

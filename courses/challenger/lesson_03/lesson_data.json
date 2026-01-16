@@ -1,0 +1,62 @@
+{
+  "lessonId": "challenger_10",
+  "courseName": "CHALLENGER",
+  "lessonNumber": "03",
+  "title": "まっすぐ前に・後ろに・向きを変える",
+  "themeColor": "#0099FF",
+  "sections": [
+    {
+      "type": "hero",
+      "title": "Lesson 3",
+      "characters": [
+        {
+          "image": "assets/hero/nezu.png",
+          "initial": {
+            "top": "25%",
+            "left": "52%"
+          }
+        },
+        {
+          "image": "assets/hero/robo.png",
+          "initial": {
+            "top": "55%",
+            "left": "85%"
+          }
+        }
+      ]
+    },
+    {
+      "type": "point",
+      "title": "今回のポイント",
+      "items": [
+        "sensor-review",
+        "loop-review"
+      ]
+    },
+    {
+      "type": "build",
+      "title": "ロボットを くみたてよう",
+      "id": "procedure1"
+    },
+    {
+      "type": "learn",
+      "title": "まなぶこと",
+      "items": [
+        "program-structure",
+        "sensor-usage",
+        "motor-control"
+      ]
+    },
+    {
+      "type": "mission_view",
+      "id": "maze-mission"
+    },
+    {
+      "type": "home",
+      "id": "basic-challenge"
+    },
+    {
+      "type": "footer"
+    }
+  ]
+}

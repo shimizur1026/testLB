@@ -1,0 +1,93 @@
+[
+    {
+        "id": "maze-mission",
+        "title": "めいろを ぬけだそう！",
+        "description": "センサーをつかって、かべに はりつかずに ゴールを めざそう。<br>ピタッと とまるのが コツだよ！",
+        "displayPattern": "simulator",
+        "aspectRatio": "rectangle",
+        "rules": [
+            {
+                "icon": "⚠️",
+                "text": "かべに ぶつからないこと"
+            },
+            {
+                "icon": "🏁",
+                "text": "ゴールで 3びょう とまること"
+            }
+        ],
+        "demoAnimation": {
+            "background": "assets/mission/bg_maze.png",
+            "robot": "assets/mission/robot.png",
+            "timeline": [
+                {
+                    "action": "move",
+                    "y": -150,
+                    "duration": 1500
+                },
+                {
+                    "action": "wait",
+                    "duration": 500
+                },
+                {
+                    "action": "stop",
+                    "duration": 800,
+                    "effect": "popup_text",
+                    "text": "ピタッ！"
+                },
+                {
+                    "action": "wait",
+                    "duration": 1500
+                }
+            ]
+        }
+    },
+    {
+        "id": "square-mission",
+        "title": "しかくい コースの ミッション",
+        "description": "正方形のコースで練習しよう。",
+        "displayPattern": "simulator",
+        "aspectRatio": "square",
+        "rules": [
+            {
+                "icon": "⏺️",
+                "text": "中心で回転すること"
+            }
+        ],
+        "demoAnimation": {
+            "background": "assets/mission/bg_maze.png",
+            "robot": "assets/mission/robot.png",
+            "timeline": [
+                {
+                    "action": "wait",
+                    "duration": 1000
+                }
+            ]
+        }
+    },
+    {
+        "id": "image-mission",
+        "title": "コースを かくにん！",
+        "description": "画像だけを表示するミッションです。",
+        "displayPattern": "image_only",
+        "aspectRatio": "rectangle",
+        "image": "assets/mission/bg_maze.png",
+        "rules": [
+            {
+                "icon": "📸",
+                "text": "コースの形を覚えよう"
+            }
+        ]
+    },
+    {
+        "id": "rules-only-mission",
+        "title": "ルールを かくにん！",
+        "description": "ルール説明だけのミッションです。",
+        "displayPattern": "rules_only",
+        "rules": [
+            {
+                "icon": "📖",
+                "text": "しっかり読んで理解しよう"
+            }
+        ]
+    }
+]

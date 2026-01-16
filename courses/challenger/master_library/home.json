@@ -1,0 +1,15 @@
+[
+    {
+        "id": "basic-challenge",
+        "title": "おうちで チャレンジ！",
+        "youtubeId": "dQw4w9WgXcQ",
+        "text": "ビデオを みて、さいごの クイズに こたえてみよう！"
+    },
+    {
+        "id": "basic-challenge2",
+        "title": "おうちで チャレンジ！",
+        "youtubeId": "dQw4w9WgXcQ",
+        "text": "ビデオを みて、さいごの クイズに こたえてみよう！",
+        "image": "assets/mission/bg_maze.png"
+    }
+]
